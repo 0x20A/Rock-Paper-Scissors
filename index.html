@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <p>
+    Rock Paper Scissors
+  </p>
+
+  <button onclick="
+    playGame('rock');
+  ">
+    Rock
+  </button>
+
+  <button onclick="
+    playGame('paper');
+  ">
+    Paper
+  </button>
+
+  <button onclick="
+    playGame('scissors');
+  ">
+    Scissors
+  </button>
+
+  <p class="js-result"></p>
+  <p class="js-moves"></p>
+  <p class="js-score"></p>
+
+  <button onclick="
+    score.wins = 0;
+    score.loses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score');
+
+    // to reset the score
+    updateScoreElement();
+  ">
+    Reset Score
+  </button>
+
+  <script src="rps.js"></script>
+</body>
+</html>
