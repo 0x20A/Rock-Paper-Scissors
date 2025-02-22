@@ -1,0 +1,93 @@
+html {
+  font-size: 62.5%; /* Ajuste REM */
+  box-sizing: border-box;
+}
+
+*, *::before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: rgb(25,25,25);
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/** Title **/
+.title {
+  font-family: Pixelify Sans;
+  font-size: 5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/** buttons **/
+.move-icon {
+  height: 7rem;
+}
+
+.move-button {
+  background-color: transparent;
+  border: 0.7rem solid white;
+  width: 120px;
+  height: 120px;
+
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.move-button:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.move-button:active {
+  background-color: transparent;
+}
+
+/** result **/
+.result {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+.score {
+  margin-top: 50px;
+}
+
+.score-square {
+  text-align: center;
+}
+
+.score-square p {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.reset-score-button {
+  font-family: Pixelify Sans;
+  font-size: 3rem;
+  text-transform: uppercase;
+
+  background-color: white;
+
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.reset-score-button:hover {
+  background-color: rgb(215, 214, 214);
+}
+
+.reset-score-button:active {
+  background-color: white;
+}
