@@ -73,7 +73,7 @@ body {
 }
 
 /** Reset button **/
-.reset-score-button {
+.reset-score-button, .auto-play-button {
   font-family: Pixelify Sans;
   font-size: 3rem;
   text-transform: uppercase;
@@ -85,10 +85,14 @@ body {
   cursor: pointer;
 }
 
-.reset-score-button:hover {
+.reset-score-button:hover, .auto-play-button:hover {
   background-color: rgb(215, 214, 214);
 }
 
-.reset-score-button:active {
+.reset-score-button:active, .auto-play-button:active {
   background-color: white;
+}
+
+.auto-play-button {
+  margin-top: 20px;
 }
