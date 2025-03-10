@@ -23,8 +23,9 @@ let isAutoPlaying = false;
 let intervalID;
 
 function autoPlay(){
+
   if(!isAutoPlaying){
-    intervalID = setInterval(function(){
+    intervalID = setInterval(() => {
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);
@@ -34,8 +35,35 @@ function autoPlay(){
     clearInterval(intervalID);
     isAutoPlaying = false;
   }
+
 }
 
+// eventlisteners for the RPS buttons
+document.querySelector('.js-rock-button')
+  .addEventListener('click', () => {
+    playGame('rock');
+});
+
+document.querySelector('.js-paper-button')
+  .addEventListener('click', () => {
+    playGame('paper');
+});
+
+document.querySelector('.js-scissors-button')
+  .addEventListener('click', () => {
+    playGame('scissors');
+});
+
+// adding key events to play
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === 'r'){
+    playGame('rock');
+  } else if (event.key === 'p') {
+    playGame('paper');
+  } else if (event.key === 's') {
+    playGame('scissors');
+  }
+});
 
 function playGame(playerMove){
   const computerMove = pickComputerMove();
@@ -95,15 +123,29 @@ function playGame(playerMove){
   document.querySelector('.js-moves')
     .innerHTML = `You <img class="move-icon" src="img/${playerMove}-emoji.png" alt="">
     <img class="move-icon" src="img/${computerMove}-emoji.png" alt=""> PC`;
-
-//       alert(`You picked ${playerMove}. Computer picked ${computerMove}. ${result}
-// Wins: ${score.wins}. Loses: ${score.loses}. Ties: ${score.ties}`);
 }
 
 function updateScoreElement() {
   document.querySelector('.js-score')
     .innerHTML = `Wins: ${score.wins} Loses: ${score.loses} Ties: ${score.ties}`;
 }
+
+// event listener for reset button and autoplay
+document.querySelector('.js-reset-button')
+  .addEventListener('click', () => {
+      score.wins = 0;
+      score.loses = 0;
+      score.ties = 0;
+      localStorage.removeItem('score');
+      
+      // to reset the score
+      updateScoreElement();
+});
+
+document.querySelector('.js-auto-play-button')
+  .addEventListener('click', () => {
+    autoPlay();
+});
 
 function pickComputerMove(){
   let computerMove = '';
