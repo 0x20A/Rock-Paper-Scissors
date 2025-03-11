@@ -96,3 +96,32 @@ body {
 .auto-play-button {
   margin-top: 20px;
 }
+
+/** reset question **/
+.reset-square {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.reset-question {
+  font-size: 2rem;
+}
+
+.confirm-button {
+  font-size: 2rem;
+  background-color: transparent;
+  border: 5px solid white;
+  color: white;
+
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+
+.confirm-button:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.confirm-button:active {
+  background-color: transparent;
+}

@@ -19,6 +19,7 @@ if(!score) { //if score is null
 // to start the score
 updateScoreElement();
 
+// function autoplay
 let isAutoPlaying = false;
 let intervalID;
 
@@ -30,9 +31,16 @@ function autoPlay(){
       playGame(playerMove);
     }, 1000);
 
+    document.querySelector('.js-auto-play-button')
+      .innerHTML = 'Stop Playing';
+
     isAutoPlaying = true;
   } else {
     clearInterval(intervalID);
+
+    document.querySelector('.js-auto-play-button')
+      .innerHTML = 'Auto Play';
+
     isAutoPlaying = false;
   }
 
@@ -54,6 +62,17 @@ document.querySelector('.js-scissors-button')
     playGame('scissors');
 });
 
+// event listener for reset button and autoplay
+document.querySelector('.js-reset-button')
+  .addEventListener('click', () => {
+    resetScore();
+});
+
+document.querySelector('.js-auto-play-button')
+  .addEventListener('click', () => {
+    autoPlay();
+});
+
 // adding key events to play
 document.body.addEventListener('keydown', (event) => {
   if (event.key === 'r'){
@@ -62,9 +81,14 @@ document.body.addEventListener('keydown', (event) => {
     playGame('paper');
   } else if (event.key === 's') {
     playGame('scissors');
+  } else if (event.key === 'a') {
+    autoPlay();
+  } else if (event.key === 'Backspace') {
+    resetScore();
   }
 });
 
+// function to play game
 function playGame(playerMove){
   const computerMove = pickComputerMove();
   let result = '';
@@ -125,28 +149,13 @@ function playGame(playerMove){
     <img class="move-icon" src="img/${computerMove}-emoji.png" alt=""> PC`;
 }
 
+// function update score
 function updateScoreElement() {
   document.querySelector('.js-score')
     .innerHTML = `Wins: ${score.wins} Loses: ${score.loses} Ties: ${score.ties}`;
 }
 
-// event listener for reset button and autoplay
-document.querySelector('.js-reset-button')
-  .addEventListener('click', () => {
-      score.wins = 0;
-      score.loses = 0;
-      score.ties = 0;
-      localStorage.removeItem('score');
-      
-      // to reset the score
-      updateScoreElement();
-});
-
-document.querySelector('.js-auto-play-button')
-  .addEventListener('click', () => {
-    autoPlay();
-});
-
+// function to pick random (pc)
 function pickComputerMove(){
   let computerMove = '';
   const randomNumber = Math.random();
@@ -160,4 +169,40 @@ function pickComputerMove(){
   }
 
   return computerMove;
+}
+
+// function to reset score
+function resetScore(){
+  document.querySelector('.js-reset-square')
+    .innerHTML = `
+      <p class="reset-question">
+        Are you sure you want to reset the score?
+      </p>
+      <button class="confirm-button js-yes">Yes</button>
+      <button class="confirm-button js-no">No</button>`;
+
+  document.querySelector('.js-yes').addEventListener('click', () => {
+    score.wins = 0;
+    score.loses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score');
+    
+    // to reset the score
+    updateScoreElement();
+  
+    document.querySelector('.js-result')
+      .innerHTML = '';
+    
+    document.querySelector('.js-moves')
+      .innerHTML = '';
+    
+    document.querySelector('.js-reset-square')
+      .innerHTML = ``;
+  });
+  
+  document.querySelector('.js-no').addEventListener('click', ()=> {
+    document.querySelector('.js-reset-square')
+    .innerHTML = ``;
+  });
+
 }
